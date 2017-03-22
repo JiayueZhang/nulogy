@@ -24,9 +24,7 @@ public class packageCost {
 		
 		String input_lines = br.readLine();
 		while(input_lines != null) {
-			String[] split = input_lines.split(" ");
-		    String v1 = split[0];      		
-		    String v2 = split[1];   
+			String[] split = input_lines.split(" ");  
 		    result.put(split[0], split[1]);
 		    input_lines = br.readLine(); 
 		}
@@ -38,15 +36,16 @@ public class packageCost {
 	
 	//write new product-category  
 	public void writeFile(String product, String ct) throws IOException{
-		product =product;
-		ct=ct;
-		FileOutputStream fso = new FileOutputStream("p_c_map");
+		//product =product;
+		//ct=ct;
+		FileOutputStream fso = new FileOutputStream("../p_c_map.txt",true);
 		OutputStreamWriter fileWriter = new OutputStreamWriter(fso,Charset.forName("UTF-8"));
-		fileWriter.write(product+" "+ct+"\n");
+		fileWriter.write("\n"+product+" "+ct);
 		fileWriter.close();
 		fso.close();
 	    }
-	 private static String readUserInput() throws IOException {
+	 //read input from keyboard
+	 public String readUserInput() throws IOException {
 	        InputStreamReader is_reader = new InputStreamReader(System.in);
 	        return new BufferedReader(is_reader).readLine();
 	    }
@@ -58,14 +57,14 @@ public class packageCost {
 		int n=Integer.parseInt(args[1]);
 		product=args[2];
 		
-		if(args.length==4)
+		if(args[3]!=null)
 		    ct=args[3];
 		
 		//Map for product - category
-		cate=readFile("p_c_map.txt");
+		cate=readFile("../p_c_map.txt");
 		
 		//Map for markups
-		markup=readFile("cost.txt");
+		markup=readFile("../cost.txt");
 		
 		if(cate.containsKey(product))
 	        m =Double.parseDouble(markup.get(cate.get(product))) ;
@@ -106,7 +105,24 @@ public class packageCost {
 	public static void main(String args[]) throws IOException, InterruptedException, ExecutionException{
 		packageCost pc=new packageCost();
 		double y=0.0;
-		y=pc.computeCost(args);
+		String[] arg= new String[4];  
+        String str =new String();
+		System.out.println("Welcome! Please enter price, number of people and product");
+		System.out.println("Example: 1299.99 3 food");
+        
+        try {
+             str = pc.readUserInput();
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        String[] split = str.split(" ");
+        for(int i=0;i<split.length;i++){
+        	arg[i]=split[i];
+        }
+       
+		y=pc.computeCost(arg);
 	    System.out.println("The packaging cost of this product is " +y);
 }
 }
