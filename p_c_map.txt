@@ -1,4 +1,6 @@
-food food 
-drugs pharmacy
-laptop electrical
+food food
 books else
+drugs pharmacy
+kindle electrical
+apple food
+handcream else
