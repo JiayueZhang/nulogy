@@ -1,0 +1,4 @@
+pharmacy 0.075
+food 0.13
+electrical 0.02
+else 0.0
