@@ -1,0 +1,5 @@
+To build this program, I wrote down a function to compute the cost at the beginning. 
+Besides the user input (price, number of people, product name), an implicit information, the corresponding markup of product is required. 
+To solve this problem, I used 2 HashMaps to save pairs of product-category, and category-markup.
+And these information is store in 2 files. 
+An extra function of my code is that user can create new product-category pair if the input product can not be found in the file.
